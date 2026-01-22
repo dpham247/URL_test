@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SMS Test Customers</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    button { 
+      padding: 10px 20px; 
+      margin: 10px 0; 
+      font-size: 16px; 
+      cursor: pointer; 
+    }
+  </style>
+</head>
+<body>
+
+<h2>Test Customers</h2>
+
+<button onclick="send('John Miller', '+15142507263', 'AC Repair', 'EN', 'https://g.page/r/TEST-AC-REPAIR')">
+  Send Test to John Miller
+</button>
+
+<button onclick="send('Marie Tremblay', '+15142507263', 'Nettoyage résidentiel', 'FR', 'https://g.page/r/TEST-CLEANING')">
+  Send Test to Marie Tremblay
+</button>
+
+<button onclick="send('David Johnson', '+15142507263', 'Plumbing', 'EN', 'https://g.page/r/TEST-PLUMBING')">
+  Send Test to David Johnson
+</button>
+
+<button onclick="send('Sophie Gagnon', '+15142507263', 'Réparation de chauffage', 'FR', 'https://g.page/r/TEST-HEATING')">
+  Send Test to Sophie Gagnon
+</button>
+
+<button onclick="send('Emily Carter', '+15142507263', 'Window Cleaning', 'EN', 'https://g.page/r/TEST-WINDOWS')">
+  Send Test to Emily Carter
+</button>
+
+<script>
+function send(name, phone, service, language, review) {
+  fetch("https://hooks.zapier.com/hooks/catch/26100170/uq9o6tw/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: name,
+      phone: phone,
+      service: service,
+      language: language,
+      review_link: review
+    })
+  });
+  alert("Test SMS sent to " + name);
+}
+</script>
+
+</body>
+</html>
